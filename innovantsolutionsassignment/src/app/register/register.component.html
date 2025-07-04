@@ -1,0 +1,43 @@
+<div class="card">
+    <h2>{{title}}</h2>
+    <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="login-grid"
+        >
+        <!-- full Name -->
+         <div class="field">
+            <input type="text" formControlName="fullName" placeholder="Full Name" required/>
+            <small *ngIf = "fullName.invalid && (fullName.touched || submitted)">Full Name is required.</small>
+         </div>
+
+         <!-- Email -->
+          <div class="field">
+            <input type="text" formControlName="email" placeholder="Email" required/>
+            <small *ngIf="email.invalid && (email.touched || submitted)">Enter a valid email address.</small>
+      </div>
+
+      <!-- Password -->
+       <div class="field">
+            <input type="password" formControlName="password" placeholder="Password" required/>
+            <small *ngIf="password.invalid && (password.touched || submitted)">Minimum 6 characters required.</small>
+    </div>
+    
+    <!-- Confirm Password -->
+     <div class="field">
+            <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" required/>
+            <small *ngIf="registerForm.hasError('mismatch') &&(confirmPassword.touched || submitted)" >Passwords must match.</small>
+    </div>
+    
+    <!-- submit Button -->
+     <button type="submit" class="submit-btn">
+        {{loading ? 'Creating Account...': 'Sign Up'}}
+     </button>
+    </form>
+
+    <!-- Navigate to login page after creating the account -->
+     <p class="signup">
+        Already have an account?
+        <a routerLink="/login">Back to login</a>
+     </p>
+</div>

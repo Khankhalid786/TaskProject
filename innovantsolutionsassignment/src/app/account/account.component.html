@@ -1,0 +1,103 @@
+<div class="account-wrapper">
+
+  <!--  Page banner  -->
+  <header class="account-banner">
+    <h1>My Account</h1>
+    <p class="tagline">
+      Manage your Fun. View Tickets, Book Zones, and Track your adventure.
+    </p>
+  </header>
+
+  <!--  Quick info strip  -->
+  <section class="info-strip" *ngIf="user as u">
+    <div class="info-item">
+      <span class="label">Email Address</span>
+      <span class="value">{{ u.email }}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="label">Phone Number</span>
+      <span class="value">+{{ u.phoneCode }} {{ u.phone }}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="label">User ID</span>
+      <span class="value">{{ u.userId }}</span>
+    </div>
+  </section>
+
+  <div class="content">
+
+    <!-- Left sidebar navigation -->
+    <aside class="sidebar">
+      <ul>
+        <li class="active">Edit Profile</li>
+        <li>FAQs</li>
+        <li>Contact Us</li>
+        <li class="danger">Delete Account</li>
+        <li (click)="logout()">Logout</li>
+      </ul>
+    </aside>
+
+    <!--  Personal Information form  -->
+    <section class="main">
+      <h3>Personal Information</h3>
+
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="saveProfile()"
+        class="grid"
+      >
+        <label>
+          First Name
+          <input formControlName="firstName" />
+        </label>
+
+        <label>
+          Last Name
+          <input formControlName="lastName" />
+        </label>
+
+        <label>
+          Email
+          <input type="email" formControlName="email" />
+        </label>
+
+        <label>
+          Phone Code
+          <input formControlName="phoneCode" />
+        </label>
+
+        <label>
+          Phone
+          <input formControlName="phone" />
+        </label>
+
+        <label>
+          New Password
+          <input type="password" formControlName="password" />
+        </label>
+
+        <label>
+          Confirm Password
+          <input type="password" formControlName="confirmPassword" />
+        </label>
+
+        <button
+          class="submit-btn"
+          type="submit"
+          [disabled]="profileForm.invalid"
+        >
+          Save
+        </button>
+      </form>
+    </section>
+
+  </div>
+
+  <!-- Footer quick links  -->
+  <footer class="quick-links">
+    <a>Home</a> • <a>T&C</a> • <a>Privacy</a>
+  </footer>
+
+</div>
